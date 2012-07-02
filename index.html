@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Twitlinks</title>
+        <title>Twitidex</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
@@ -25,7 +25,7 @@
         <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/kendo.web.min.js"></script>
-        <script src="js/twitlink.js"></script>
+        <script src="js/twitidex.js"></script>
         <script src="http://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
         <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -35,7 +35,19 @@
     </head>
 
     <body>
-    
+        
+        <!-- Facebook like button -->
+        <div id="fb-root"></div>
+        <script>            
+            (function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=485691844781013";
+                fjs.parentNode.insertBefore(js, fjs);
+            } (document, 'script', 'facebook-jssdk'));
+        </script>
+            
         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container-fluid">
@@ -44,12 +56,12 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="#">Twitlink</a>
+                    <a class="brand" href="#">Twitidex</a>
                     <div class="nav-collapse">
                         <ul class="nav">
                             <li class="active"><a href="#">Home</a></li>
-                            <li><a href="#about">About</a></li>
-                            <li><a href="#contact">Contact</a></li>
+                            <li><a href="about.html">About</a></li>
+                            <li><a href="contact.html">Contact</a></li>
                         </ul>
                     </div><!--/.nav-collapse -->
                 </div>
@@ -57,8 +69,34 @@
         </div>
 
         <div class="container-fluid">
+            <div class="row">
+                <div class="offset2 span9">
+                    <div class="span3">
+                        <!-- Place this tag where you want the +1 button to render. -->
+                        <div class="g-plusone" data-annotation="inline" data-width="300"></div>
+                        <!-- Place this tag after the last +1 button tag. -->
+                        <script type="text/javascript">
+                            (function () {
+                                var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                                po.src = 'https://apis.google.com/js/plusone.js';
+                                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                            })();
+                        </script>
+                    </div>
+                    <div class="span3">
+                        <div class="fb-like" data-href="http://twitidex.github.com" data-send="false" data-width="450" data-show-faces="false"></div>
+                    </div>
+                    <div class="span3">
+                        <a href="https://twitter.com/share" class="twitter-share-button" style="float: right;" data-size="large">Tweet</a>
+                        <script>    !function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = "//platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); } } (document, "script", "twitter-wjs");</script>
+                    </div>
+                </div>
+            </div>
+            
+            <hr/>
+
             <div class="row-fluid">
-                <div class="span2">
+                <div class="span2" style="visibility: hidden;">
                     <div class="well sidebar-nav">
                         <ul class="nav nav-list">
                             <li class="nav-header">Ads</li>
@@ -82,8 +120,9 @@
                         </div>
                     </div>
                     <ul id="twitterList" class="span12 list-view">
-                        
                     </ul>
+                    <p id="noResults">
+                    </p>
                 </div><!--/span-->
                 <div class="span2">
                     <div class="well sidebar-nav">

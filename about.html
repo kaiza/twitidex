@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Twitidex</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        
+        <!-- Le styles -->
+        <link href="css/bootstrap.min.css" rel="stylesheet" />
+        <style type="text/css">
+            body {  
+                padding-top: 60px;
+                padding-bottom: 40px;
+            }
+            .sidebar-nav {
+                padding: 9px 0;
+            }
+        </style>
+        <link href="css/bootstrap-responsive.min.css" rel="stylesheet" />
+        <link href="css/kendo.common.min.css" rel="stylesheet" />
+        <link href="css/kendo.default.min.css" rel="stylesheet" />
+        
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/kendo.web.min.js"></script>
+        <script src="js/twitidex.js"></script>
+        <script src="http://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+        <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+    
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="#">Twitidex</a>
+                    <div class="nav-collapse">
+                        <ul class="nav">
+                            <li><a href="index.html">Home</a></li>
+                            <li class="active"><a href="#">About</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div><!--/.nav-collapse -->
+                </div>
+            </div>
+        </div>
+
+		<div class="container">
+            <div class="row-fluid">
+                <div class="span10">
+
+					<h1>About</h1>
+					<p>This is an experimental app that downloads data from Twitter and summarises the referenced hashtags, users and URLs for the specified feed.<br><br>
+					To get started, enter a search term and press the search button or press Enter. The feed for the search term is displayed along with a summary of the tags/users/URLs.
+					Click a hashtag or user to search by the item.
+					</p>
+			
+				</div>
+			</div>
+			
+            <hr />
+
+			<footer>
+				<p>&copy; Kai Gorman 2012</p>
+			</footer>
+
+        </div><!--/.fluid-container-->
+        
+        <style scoped>
+            .hide-overflow {
+                overflow: hidden;
+            }
+            .sub-nav {
+                margin-bottom: 0px;
+            }
+            .list-item {
+                padding-bottom: 3px;
+                border-bottom: 1px solid gray;
+            }
+            .list-header {
+            }
+            .btn-override {
+                padding: 4px 10px;
+            }
+            button i {
+                margin-right: 2px !important; 
+            }
+            .list-view {
+                border: none; 
+                margin-left: 0 !important;
+                background-color: transparent;
+            }
+            .hero-unit-override {
+                padding: 10px !important;
+            }
+        </style>
+    </body>
+</html>
