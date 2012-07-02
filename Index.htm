@@ -1,0 +1,179 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Twitlinks</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        
+        <!-- Le styles -->
+        <link href="css/bootstrap.min.css" rel="stylesheet" />
+        <style type="text/css">
+            body {  
+                padding-top: 60px;
+                padding-bottom: 40px;
+            }
+            .sidebar-nav {
+                padding: 9px 0;
+            }
+        </style>
+        <link href="css/bootstrap-responsive.min.css" rel="stylesheet" />
+        <link href="css/kendo.common.min.css" rel="stylesheet" />
+        <link href="css/kendo.default.min.css" rel="stylesheet" />
+        
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/kendo.web.min.js"></script>
+        <script src="js/twitlink.js"></script>
+        <script src="http://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+        <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+    
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="#">Twitlink</a>
+                    <div class="nav-collapse">
+                        <ul class="nav">
+                            <li class="active"><a href="#">Home</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </div><!--/.nav-collapse -->
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span2">
+                    <div class="well sidebar-nav">
+                        <ul class="nav nav-list">
+                            <li class="nav-header">Ads</li>
+                            <li class="active"><a href="#">Link</a></li>
+                            <li><a href="#">Link</a></li>
+                        </ul>
+                    </div><!--/.well -->
+                </div><!--/span-->
+                <div class="span4">
+                    <div class="hero-unit hero-unit-override">
+                        <h2>Search</h2>
+                        <div class="row-fluid">
+                            <form onsubmit="searchAction()" action="javascript:void(0)">
+                                <div class="span9">
+                                    <input id="searchTextBox" type="text" class="search-query span12" placeholder="User or Hashtag" />
+                                </div>
+                                <div class="span3">
+                                    <button type="submit" class="btn btn-override"><i class="icon-search"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <ul id="twitterList" class="span12 list-view">
+                        
+                    </ul>
+                </div><!--/span-->
+                <div class="span2">
+                    <div class="well sidebar-nav">
+                        <ul class="nav nav-list">
+                            <li class="nav-header list-header">Hashtags</li>
+                            <li>
+                                <ul id="hashtagsList" class="nav sub-nav list-view">
+                                </ul>
+                            </li>
+                        </ul>
+                    </div><!--/.well -->
+                </div><!--/span-->
+                <div class="span2">
+                    <div class="well sidebar-nav">
+                        <ul class="nav nav-list">
+                            <li class="nav-header list-header">Users</li>
+                            <li>
+                                <ul id="usersList" class="nav sub-nav list-view">
+                                </ul>
+                            </li>
+                        </ul>
+                    </div><!--/.well -->
+                </div><!--/span-->
+                <div class="span2">
+                    <div class="well sidebar-nav">
+                        <ul class="nav nav-list">
+                            <li class="nav-header list-header">Links</li>
+                            <li>
+                                <ul id="urlsList" class="nav sub-nav list-view">
+                                </ul>
+                            </li>
+                        </ul>
+                    </div><!--/.well -->
+                </div><!--/span-->
+            </div><!--/row-->
+
+            <hr />
+
+            <footer>
+                <p>&copy; Kai Gorman 2012</p>
+            </footer>
+
+        </div><!--/.fluid-container-->
+        
+        <script type="text/x-kendo-template" id="tweetTemplate">
+            <blockquote class="twitter-tweet tw-align-center">
+                <p>#= text #</p>
+                &mdash;<a href="https://twitter.com/#= from_user #/status/#= id_str #" data-datetime="#= created_at #"></a>
+            </blockquote>
+        </script> 
+
+        <script type="text/x-kendo-template" id="hashtagsTemplate">
+            <li class="hide-overflow"><a href="\\#search=#= text #" title="\\##= text #">\\##= text #</a></li>
+        </script>
+
+        <script type="text/x-kendo-template" id="usersTemplate">
+            <li class="hide-overflow"><a href="\\#search=@#= screen_name #" title="#= name # (#= screen_name #)">#= name # (#= screen_name #)</a></li>
+        </script>
+
+        <script type="text/x-kendo-template" id="urlsTemplate">
+            <li class="hide-overflow"><a href="#= url #" title="#= display_url #">#= display_url #</a></li>
+        </script>
+        
+        <style scoped>
+            .hide-overflow {
+                overflow: hidden;
+            }
+            .sub-nav {
+                margin-bottom: 0px;
+            }
+            .list-item {
+                padding-bottom: 3px;
+                border-bottom: 1px solid gray;
+            }
+            .list-header {
+            }
+            .btn-override {
+                padding: 4px 10px;
+            }
+            button i {
+                margin-right: 2px !important; 
+            }
+            .list-view {
+                border: none; 
+                margin-left: 0 !important;
+                background-color: transparent;
+            }
+            .hero-unit-override {
+                padding: 10px !important;
+            }
+        </style>
+    </body>
+</html>
